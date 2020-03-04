@@ -5,7 +5,7 @@ class Home extends Component {
     render() { 
         return ( 
             <div className="home">
-                This is home.
+                Socialist. a place for losers.
             </div>
          );
     }

@@ -13,6 +13,12 @@
   }
 }
 
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -67,3 +73,35 @@ li a.active {
   color: white;
   background-color: #4CAF50;
 }
+
+.title-pin {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f3f3f3f1;
+  float: right;
+  padding-right: 10px;
+  padding-top: 15px;
+  text-align: center;
+  display: block;
+}
+
+img {
+border-radius: 15px;
+}
+img:hover {
+  border: green 2px;
+  background-color: green
+
+
+}
+
+.contact-card {
+  text-align: center;
+  border: solid rgb(110, 235, 85);
+  border-radius: 1ch;
+  display: block;
+  margin-bottom: 10px;
+}
+

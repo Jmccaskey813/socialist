@@ -13,6 +13,7 @@ const NavBar = () => (
             <li>
                 <Link to= "/">Home</Link>
             </li>
+            <li className="title-pin">socialist</li>
         </ul>
     </div>
 );

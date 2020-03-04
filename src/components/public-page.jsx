@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Generator from './fakeBioGenerator';
 
 
 class PublicPage extends Component {
@@ -16,7 +17,7 @@ class PublicPage extends Component {
          })
      }
 
-     
+
     fetchData() {
 
         this.setState({
@@ -30,7 +31,7 @@ class PublicPage extends Component {
         username: `${user.login.username}`,
         address: `${user.location.state}, ${user.location.city}`,
         email: `${user.email}`,
-        pictureUrl: `${user.picture.medium}`
+        pictureUrl: `${user.picture.large}`
         }
     )) )
     .then(contacts => this.setState({
@@ -40,13 +41,28 @@ class PublicPage extends Component {
     }
     
     render() { 
-        const { name, username, eaddress, email, pictureUrl } = this.state;
+        const { contacts } = this.state;
         return (
             <div>
-     <img 
-      src={this.state.contacts.picture}
-      alt="new"
-      />
+                <h2>News Feed</h2>
+            
+            { contacts.map(contact => {
+                const {username, pictureUrl} = contact;
+                return (
+                    <div className="contact-card" key={username}>
+                    
+                        <table>
+                        <tr>{username}</tr>
+                            <tr><Generator /></tr>
+                        </table>
+
+                        <div className="photo"> 
+                        <img  src= {pictureUrl} alt= {pictureUrl} />
+                        </div>
+                    
+                    </div>
+                )
+            })}
             </div>
           );
     }
