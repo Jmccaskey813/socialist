@@ -5,13 +5,13 @@ const NavBar = () => (
     <div className= "navBar">
         <ul>
             <li>
-                <Link to= "/public-page">Public Page</Link>
+                <Link to= "/public-page">Feed</Link>
             </li>
             <li>
                 <Link to= "/sign-in">Sign In</Link>
             </li>
             <li>
-                <Link to= "/">Home</Link>
+                <Link to= "/">Profile</Link>
             </li>
             <li className="title-pin">socialist</li>
         </ul>

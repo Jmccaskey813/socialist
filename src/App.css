@@ -99,9 +99,15 @@ img:hover {
 
 .contact-card {
   text-align: center;
-  border: solid rgb(110, 235, 85);
+  border: solid rgb(14, 34, 218);
   border-radius: 1ch;
-  display: block;
+  display: flex;
   margin-bottom: 10px;
 }
+.right-box {
+  flex: 1;
+}
 
+.left-box {
+  flex: 3;
+}

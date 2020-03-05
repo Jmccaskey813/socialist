@@ -47,18 +47,18 @@ class PublicPage extends Component {
                 <h2>News Feed</h2>
             
             { contacts.map(contact => {
-                const {username, pictureUrl} = contact;
+                const {username, pictureUrl, name} = contact;
                 return (
                     <div className="contact-card" key={username}>
-                    
-                        <table>
-                        <tr>{username}</tr>
-                            <tr><Generator /></tr>
-                        </table>
-
-                        <div className="photo"> 
-                        <img  src= {pictureUrl} alt= {pictureUrl} />
+                        <div className="left-box">
+                            <h4>{name}</h4>
+                            <p><Generator /></p>
                         </div>
+
+                    <div className="right-box"> 
+                         <p>{username}</p>
+                         <img  src= {pictureUrl} alt= {pictureUrl} />
+                    </div>
                     
                     </div>
                 )
