@@ -6,16 +6,25 @@ import UserProfile from './userProfile';
 
 
 class Home extends Component {
+    // state = { 
+    //     usernameOne: '',
+    //     usernameTwo: '',
+    //     bio: '',
+    //     name: '',
+    //     displayStuff: '',
+    //     imageAsFile: '',
+    //     imageAsUrl: ''
+    //  }
+
+    //for testing userProfile Only
     state = { 
-        test: 'test',
-        usernameOne: '',
+        usernameOne: 'JohnSmith',
         usernameTwo: '',
-        bio: '',
-        name: '',
-        picture: '',
-        displayStuff: '',
+        bio: 'This is a test bio only. Make sure to add borders to see how big this will be',
+        name: 'John Apple Smith',
+        displayStuff: '1',
         imageAsFile: '',
-        imageAsUrl: ''
+        imageAsUrl: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
      }
 
      
@@ -52,7 +61,6 @@ class Home extends Component {
             usernameTwo: '',
             bio: '',
             name: '',
-            picture: '',
             displayStuff: '',
             imageAsFile: '',
             imageAsUrl: ''
@@ -85,10 +93,9 @@ class Home extends Component {
      
 
     render() { 
-    
-        const { imageAsUrl } = this.state;
+        // add form validation
             
-        const {usernameOne, usernameTwo, bio, name, displayStuff} = this.state;
+        const {usernameOne, usernameTwo, bio, name, displayStuff, imageAsUrl} = this.state;
         return ( 
             <div className="home">
                 <div className= "form-container"
@@ -146,13 +153,16 @@ class Home extends Component {
                 onClick={(e)=> this.createNew(e)}
                 style={displayStuff ?{display: 'block'}: {display:'none'}}
                 >
-                <div>
-                    <img src={imageAsUrl} alt="imagetag" />    
-                </div>    
                 start over
                 </button>
-            <UserProfile
-            
+
+            <UserProfile 
+            imageAsUrl= {imageAsUrl}
+            bio = {bio}
+            displayStuff = {displayStuff}
+            name = {name}
+            usernameOne = {usernameOne}
+
             />
             </div>
          );

@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -89,6 +91,8 @@ li a.active {
 
 img {
 border-radius: 15px;
+max-width: 100%;
+height: auto;
 }
 img:hover {
   border: green 2px;
@@ -110,4 +114,26 @@ img:hover {
 
 .left-box {
   flex: 3;
+}
+
+.userProfileContainer {
+  border: solid #000000;
+  border-radius: 5%;
+  max-width: 70%;
+  max-height: auto;
+  overflow: hidden;
+  
+}
+
+.left-user {
+  text-align: center;
+  width: 30%;
+  float: left;
+  height: auto;
+}
+
+.right-user {
+  padding-top: 5%;
+  text-align: center;
+  overflow: hidden;
 }
