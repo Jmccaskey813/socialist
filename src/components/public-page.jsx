@@ -52,7 +52,7 @@ class PublicPage extends Component {
                     <div className="contact-card" key={username}>
                         <div className="left-box">
                             <h4>{name}</h4>
-                            <p><Generator /></p>
+                            <span><Generator /></span>
                         </div>
 
                     <div className="right-box"> 

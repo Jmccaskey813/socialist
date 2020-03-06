@@ -1,36 +1,51 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { storage } from './firebase';
+import UserProfile from './userProfile';
 
 
-
-// use to upload images to local storage, set dataURL to state
-
-// const toDataURL = url => fetch(url)
-//   .then(response => response.blob())
-//   .then(blob => new Promise((resolve, reject) => {
-//     const reader = new FileReader()
-//     reader.onloadend = () => resolve(reader.result)
-//     reader.onerror = reject
-//     reader.readAsDataURL(blob)
-//   }))
-
-
-//   toDataURL('file')
-//   .then(dataUrl => {
-//     console.log('RESULT:', dataUrl)
-//   })
 
 
 class Home extends Component {
     state = { 
+        test: 'test',
         usernameOne: '',
         usernameTwo: '',
         bio: '',
         name: '',
         picture: '',
-        displayStuff: ''
+        displayStuff: '',
+        imageAsFile: '',
+        imageAsUrl: ''
      }
 
+     
+
+
+    handleFirebaseUpload = e => {
+        const { imageAsFile } = this.state;
+        console.log('uploaded started');
+        if (imageAsFile=== '') {
+            console.log(`not an image, the image file is a ${typeof(imageAsFile)}`)
+        }
+        const uploadTask= storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+        uploadTask.on('state_changed',
+        (snapShot) => {
+            console.log(snapShot)
+        }, (err) => {
+            console.log(err)
+        }, () => {
+            storage.ref('images').child(imageAsFile.name).getDownloadURL()
+            .then(fireBaseUrl => {
+                this.setState({
+                    imageAsUrl: fireBaseUrl
+                })
+            })
+        }
+        )
+
+    }
+
+    
      createNew(e) {
          this.setState({
             usernameOne: '',
@@ -38,15 +53,18 @@ class Home extends Component {
             bio: '',
             name: '',
             picture: '',
-            displayStuff: ''
+            displayStuff: '',
+            imageAsFile: '',
+            imageAsUrl: ''
          })
          e.preventDefault();
      }
 
-     onSubmit(e) {
+     onSubmit= (e) => {
         this.setState({displayStuff: 'true'});
-        this.imageUploader() 
+        this.handleFirebaseUpload();
         e.preventDefault(); 
+        console.log(this.state.imageAsFile);
      }
 
      onChange(e) {
@@ -55,16 +73,21 @@ class Home extends Component {
         })
      }
 
-     imageUploader= event => {
-        console.log(event.target.files[0]);
+     imageUploader = event => {
+        const image = event.target.files[0];
         this.setState({
-            picture: event.target.files[0]
-        })
-        axios.post('')
+            imageAsFile: image
+        });
+        
      }
+
+      
      
 
     render() { 
+    
+        const { imageAsUrl } = this.state;
+            
         const {usernameOne, usernameTwo, bio, name, displayStuff} = this.state;
         return ( 
             <div className="home">
@@ -72,7 +95,7 @@ class Home extends Component {
                 style={displayStuff ?{display: 'none'}: {display:'block'}}
                 >
                 <p>Create a profile</p>
-                <form onSubmit={(e)=>this.onSubmit(e)} className="profile">
+                <form onSubmit={this.onSubmit} className="profile">
                     <span>username</span>
                     <br/>
                     <input 
@@ -105,10 +128,16 @@ class Home extends Component {
                         name="bio"
                         value={bio}    
                     ></textarea>
-                    <input type="file" onChange={this.imageUploader}/>
+                    <span>Upload a photo of yourself:</span>
+                    <input 
+                        type="file" 
+                        onChange={this.imageUploader}
+                    />
+
                     <button
-                    style={displayStuff ?{display: 'none'}: {display:'block'}}
-                    >create profile</button>
+                    style={displayStuff ?{display: 'none'}: {display:'block'}}>
+                        create profile
+                    </button>
 
                 </form>
                 </div>
@@ -117,9 +146,14 @@ class Home extends Component {
                 onClick={(e)=> this.createNew(e)}
                 style={displayStuff ?{display: 'block'}: {display:'none'}}
                 >
+                <div>
+                    <img src={imageAsUrl} alt="imagetag" />    
+                </div>    
                 start over
                 </button>
-
+            <UserProfile
+            
+            />
             </div>
          );
     }
