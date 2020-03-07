@@ -19,6 +19,7 @@ class UserProfile extends Component {
         <div className="left-user">
             <span>{usernameOne}</span>
             <br/>
+            <hr/>
             <img src={imageAsUrl} alt="profileImage"/>
         </div>
 
@@ -27,7 +28,13 @@ class UserProfile extends Component {
         <span>about {name}:</span>
         <hr/>
         <p>{bio}</p>
-        <button className='backBtn'><span>&#8592;</span></button>
+        <button
+            //needs to be have function raised. took from Home component.
+                onClick={(e)=> this.props.createNew(e)}
+                style={displayStuff ?{display: 'inline-block'}: {display:'none'}}
+                >
+                start over
+                </button>
         </div>
         
         </div>

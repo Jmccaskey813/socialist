@@ -149,14 +149,10 @@ class Home extends Component {
                 </form>
                 </div>
                 <br/>
-                <button
-                onClick={(e)=> this.createNew(e)}
-                style={displayStuff ?{display: 'block'}: {display:'none'}}
-                >
-                start over
-                </button>
+                
 
             <UserProfile 
+            createNew = {this.createNew}
             imageAsUrl= {imageAsUrl}
             bio = {bio}
             displayStuff = {displayStuff}

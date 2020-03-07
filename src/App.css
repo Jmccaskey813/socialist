@@ -117,8 +117,8 @@ img:hover {
 }
 
 .userProfileContainer {
-  border: solid #000000;
-  border-radius: 5%;
+  border: solid rgb(14, 34, 218);
+  border-radius: 12px;
   max-width: 70%;
   max-height: auto;
   overflow: hidden;
@@ -126,6 +126,7 @@ img:hover {
 }
 
 .left-user {
+  padding: 10px;
   text-align: center;
   width: 30%;
   float: left;
@@ -133,6 +134,7 @@ img:hover {
 }
 
 .right-user {
+  padding-right: 2%;
   padding-top: 5%;
   text-align: center;
   overflow: hidden;
