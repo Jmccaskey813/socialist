@@ -3,7 +3,7 @@ import 'firebase/storage';
 import 'firebase/analytics';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCREJveoXiq18NM6aG4U_4BurKWmMSxaLw",
+    apiKey: process.env.REACT_APP_API,
     authDomain: "socialist-7ca70.firebaseapp.com",
     databaseURL: "https://socialist-7ca70.firebaseio.com",
     projectId: "socialist-7ca70",

@@ -5,9 +5,12 @@ class UserProfile extends Component {
 
      }
 
+     createNew= (e)=> {
+        this.props.createNew(e);
+     }
+
      
     render() { 
-        console.log(this.props.test)
         
         const { displayStuff, usernameOne, bio, imageAsUrl, name } = this.props;
         return ( 
@@ -19,7 +22,6 @@ class UserProfile extends Component {
         <div className="left-user">
             <span>{usernameOne}</span>
             <br/>
-            <hr/>
             <img src={imageAsUrl} alt="profileImage"/>
         </div>
 
@@ -30,7 +32,7 @@ class UserProfile extends Component {
         <p>{bio}</p>
         <button
             //needs to be have function raised. took from Home component.
-                onClick={(e)=> this.props.createNew(e)}
+                onClick={(e)=> this.createNew(e)}
                 style={displayStuff ?{display: 'inline-block'}: {display:'none'}}
                 >
                 start over

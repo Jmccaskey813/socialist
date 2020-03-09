@@ -6,16 +6,7 @@ import UserProfile from './userProfile';
 
 
 class Home extends Component {
-    // state = { 
-    //     usernameOne: '',
-    //     usernameTwo: '',
-    //     bio: '',
-    //     name: '',
-    //     displayStuff: '',
-    //     imageAsFile: '',
-    //     imageAsUrl: ''
-    //  }
-
+    
     //for testing userProfile Only
     state = { 
         usernameOne: 'JohnSmith',
@@ -55,7 +46,7 @@ class Home extends Component {
     }
 
     
-     createNew(e) {
+     createNew= (e)=> {
          this.setState({
             usernameOne: '',
             usernameTwo: '',
@@ -89,11 +80,18 @@ class Home extends Component {
         
      }
 
+    //  stateChange=()=> {
+    //      this.props.stateChange()
+    //  }
+
+    //  componentDidMount= () => {
+    //      let currentState= this.state;
+    //      this.stateChange(currentState)
+    //  }
       
      
 
     render() { 
-        // add form validation
             
         const {usernameOne, usernameTwo, bio, name, displayStuff, imageAsUrl} = this.state;
         return ( 
@@ -122,7 +120,7 @@ class Home extends Component {
                     <span>full name</span>
                     <br/>
                     <input 
-                        placeholder="first, last.."
+                        placeholder="first name, last name"
                         onChange= {(e)=> this.onChange(e)}
                         name= "name"
                         value= {name}    

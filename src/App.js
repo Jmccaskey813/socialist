@@ -7,10 +7,19 @@ import PublicPage from './components/public-page';
 import SignIn from './components/sign-in';
 import Home from './components/home';
 
+
+
 class App extends Component {
   state = { 
-    authUser: true
+  auth: 'test'
    }
+
+  stateChange = (newState)=> {
+    this.setState({
+      newState
+    });
+  };
+
   render() { 
     return ( 
       <Router>
