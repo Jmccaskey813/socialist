@@ -139,3 +139,21 @@ img:hover {
   text-align: center;
   overflow: hidden;
 }
+
+.userHeader {
+  display: inline-block;
+}
+
+.fetch-btn {
+  float: right;
+  border-radius: 1ch;
+  background-color: red;
+  font-size: large;
+  color: white;
+}
+
+.form-container {
+  border-radius : 1ch;
+  border: solid black;
+  text-align: center;
+}

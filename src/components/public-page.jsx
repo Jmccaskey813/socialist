@@ -5,17 +5,21 @@ import Generator from './fakeBioGenerator';
 class PublicPage extends Component {
     state = { 
         contacts: []
-     }
+     };
 
+     
+     
      componentDidMount() {
-         this.fetchData();
-     }
+         !localStorage.getItem('contacts') ? this.fetchData() : this.sameFriends() ;
+    };
 
-     componentWillUnmount() {
-         this.setState({
-             contacts: []
-         })
-     }
+
+    sameFriends() {
+       this.setState({
+           contacts: JSON.parse(localStorage.getItem('contacts'))
+       }) 
+    };
+
 
 
     fetchData() {
@@ -23,7 +27,10 @@ class PublicPage extends Component {
         this.setState({
             contacts: []
         })
-        fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
+        //needs fixing, you have to fetch friends twice for local storage to take affect. move component lifecycle code to this function.
+        localStorage.removeItem('contacts');
+
+    fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
     .then(response => response.json())
     .then(parsedJSON => parsedJSON.results.map(user => (
         {
@@ -38,14 +45,30 @@ class PublicPage extends Component {
         contacts,
     }))
     .catch(error => console.log('parsing failed', error))
-    }
+
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    };
     
     render() { 
+        const { usernameOne, bio, name, imageAsUrl } = this.props;
         const { contacts } = this.state;
         return (
             <div>
-                <h2>News Feed</h2>
-            
+                <h2>{name}'s News Feed     
+                <button className="fetch-btn" onClick={()=> this.fetchData()} >fetch friends</button>
+                </h2>
+                <hr />
+            <div className="contact-card user" key={usernameOne}>
+                <div className="left-box">
+                    <h4>{name}</h4>
+                    <span>{bio}</span>
+                </div>
+
+                <div className="right-box"> 
+                     <p>{usernameOne}</p>
+                     <img  src= {imageAsUrl} alt= {imageAsUrl} />
+                        </div>
+            </div>
             { contacts.map(contact => {
                 const {username, pictureUrl, name} = contact;
                 return (
@@ -65,7 +88,7 @@ class PublicPage extends Component {
             })}
             </div>
           );
-    }
-}
+    };
+};
  
 export default PublicPage;

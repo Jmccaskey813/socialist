@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { storage } from './firebase';
 import UserProfile from './userProfile';
 
 
@@ -7,7 +6,7 @@ import UserProfile from './userProfile';
 
 class Home extends Component {
     
-    //for testing userProfile Only
+    //sets sample user profile, please upload your own things
     state = { 
         usernameOne: 'JohnSmith',
         usernameTwo: '',
@@ -20,99 +19,35 @@ class Home extends Component {
 
      
 
-
-    handleFirebaseUpload = e => {
-        const { imageAsFile } = this.state;
-        console.log('uploaded started');
-        if (imageAsFile=== '') {
-            console.log(`not an image, the image file is a ${typeof(imageAsFile)}`)
-        }
-        const uploadTask= storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
-        uploadTask.on('state_changed',
-        (snapShot) => {
-            console.log(snapShot)
-        }, (err) => {
-            console.log(err)
-        }, () => {
-            storage.ref('images').child(imageAsFile.name).getDownloadURL()
-            .then(fireBaseUrl => {
-                this.setState({
-                    imageAsUrl: fireBaseUrl
-                })
-            })
-        }
-        )
-
-    }
-
     
-     createNew= (e)=> {
-         this.setState({
-            usernameOne: '',
-            usernameTwo: '',
-            bio: '',
-            name: '',
-            displayStuff: '',
-            imageAsFile: '',
-            imageAsUrl: ''
-         })
-         e.preventDefault();
-     }
 
-     onSubmit= (e) => {
-        this.setState({displayStuff: 'true'});
-        this.handleFirebaseUpload();
-        e.preventDefault(); 
-        console.log(this.state.imageAsFile);
-     }
-
-     onChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-     }
-
-     imageUploader = event => {
-        const image = event.target.files[0];
-        this.setState({
-            imageAsFile: image
-        });
-        
-     }
-
-    //  stateChange=()=> {
-    //      this.props.stateChange()
-    //  }
-
-    //  componentDidMount= () => {
-    //      let currentState= this.state;
-    //      this.stateChange(currentState)
-    //  }
+   
       
-     
+     //style form 
 
     render() { 
             
-        const {usernameOne, usernameTwo, bio, name, displayStuff, imageAsUrl} = this.state;
+        const { usernameOne, usernameTwo, bio, name, displayStuff, imageAsUrl } = this.props;
+
         return ( 
             <div className="home">
                 <div className= "form-container"
                 style={displayStuff ?{display: 'none'}: {display:'block'}}
                 >
                 <p>Create a profile</p>
-                <form onSubmit={this.onSubmit} className="profile">
+                <form onSubmit={this.props.onSubmit} className="profile">
                     <span>username</span>
                     <br/>
                     <input 
                         placeholder="username" 
-                        onChange= {(e)=> this.onChange(e)}
+                        onChange= {(e)=> this.props.onChange(e)}
                         name= "usernameOne"
                         value= {usernameOne}
                     ></input>
                     <br/>
                     <input 
                         placeholder="confirm" 
-                        onChange={(e)=> this.onChange(e)}
+                        onChange={(e)=> this.props.onChange(e)}
                         name= "usernameTwo" 
                         value= {usernameTwo}   
                     ></input>
@@ -121,7 +56,7 @@ class Home extends Component {
                     <br/>
                     <input 
                         placeholder="first name, last name"
-                        onChange= {(e)=> this.onChange(e)}
+                        onChange= {(e)=> this.props.onChange(e)}
                         name= "name"
                         value= {name}    
                     ></input>
@@ -129,16 +64,18 @@ class Home extends Component {
                     <span>Tell us a little about yourself:</span>
                     <textarea 
                         rows="5" cols="80" id="bio" 
-                        onChange= {(e)=> this.onChange(e)}
+                        onChange= {(e)=> this.props.onChange(e)}
                         name="bio"
                         value={bio}    
                     ></textarea>
+                    <br/>
                     <span>Upload a photo of yourself:</span>
+                    <br/>
                     <input 
                         type="file" 
-                        onChange={this.imageUploader}
+                        onChange={this.props.imageUploader}
                     />
-
+                    <br/>
                     <button
                     style={displayStuff ?{display: 'none'}: {display:'block'}}>
                         create profile
@@ -150,7 +87,7 @@ class Home extends Component {
                 
 
             <UserProfile 
-            createNew = {this.createNew}
+            createNew = {this.props.createNew}
             imageAsUrl= {imageAsUrl}
             bio = {bio}
             displayStuff = {displayStuff}

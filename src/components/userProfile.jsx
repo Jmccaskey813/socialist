@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 class UserProfile extends Component {
-    state = { 
-
-     }
+    
 
      createNew= (e)=> {
         this.props.createNew(e);
@@ -31,7 +29,6 @@ class UserProfile extends Component {
         <hr/>
         <p>{bio}</p>
         <button
-            //needs to be have function raised. took from Home component.
                 onClick={(e)=> this.createNew(e)}
                 style={displayStuff ?{display: 'inline-block'}: {display:'none'}}
                 >
