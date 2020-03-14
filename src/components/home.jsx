@@ -30,9 +30,13 @@ class Home extends Component {
         const { usernameOne, usernameTwo, bio, name, displayStuff, imageAsUrl } = this.props;
 
         return ( 
-            <div className="home">
+            <React.Fragment>
+            <div 
+                className="mc"
+                >
+
                 <div className= "form-container"
-                style={displayStuff ?{display: 'none'}: {display:'block'}}
+                style={displayStuff ?{display: 'none'}: {display:'inline'}}
                 >
                 <p>Create a profile</p>
                 <form onSubmit={this.props.onSubmit} className="profile">
@@ -69,15 +73,17 @@ class Home extends Component {
                         value={bio}    
                     ></textarea>
                     <br/>
-                    <span>Upload a photo of yourself:</span>
+                    <span>Upload a photo:</span>
                     <br/>
                     <input 
+                        className="form-button"
                         type="file" 
                         onChange={this.props.imageUploader}
                     />
                     <br/>
                     <button
-                    style={displayStuff ?{display: 'none'}: {display:'block'}}>
+                    className="form-button"
+                    style={displayStuff ?{display: 'none'}: {display:'inline-block'}}>
                         create profile
                     </button>
 
@@ -96,6 +102,14 @@ class Home extends Component {
 
             />
             </div>
+           <form 
+                action = 'https://github.com/Jmccaskey813/socialist'
+                className= "source-code-form"
+                >
+            <button type='submit' className="source-code-btn">View Souce Code</button>
+            </form>
+            </React.Fragment>
+            
          );
     }
 }

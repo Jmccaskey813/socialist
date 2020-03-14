@@ -77,6 +77,7 @@ li a.active {
 }
 
 .title-pin {
+  font-size: larger;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -103,10 +104,14 @@ img:hover {
 
 .contact-card {
   text-align: center;
-  border: solid rgb(14, 34, 218);
-  border-radius: 1ch;
   display: flex;
-  margin-bottom: 10px;
+  max-width: 50%;
+  margin: 0 auto;
+  border: groove silver;
+  border-radius: 0.5ch;
+  padding: 1ch;
+  margin-bottom: 1ch;
+
 }
 .right-box {
   flex: 1;
@@ -117,9 +122,8 @@ img:hover {
 }
 
 .userProfileContainer {
-  border: solid rgb(14, 34, 218);
   border-radius: 12px;
-  max-width: 70%;
+  max-width: 100%;
   max-height: auto;
   overflow: hidden;
   
@@ -146,6 +150,7 @@ img:hover {
 
 .fetch-btn {
   float: right;
+  margin-right: 25%;
   border-radius: 1ch;
   background-color: red;
   font-size: large;
@@ -153,7 +158,92 @@ img:hover {
 }
 
 .form-container {
+  margin-top: 10%;
+  display: inline-block;
+  max-width: 80%;
   border-radius : 1ch;
-  border: solid black;
+  text-align: center;
+  overflow: hidden;
+  color: grey
+}
+
+
+
+.mc {
+max-width: 50%;
+margin: 0 auto;
+margin-top: 3%;
+border: groove silver;
+border-radius: 0.5%;
+padding: 1ch;
+margin-bottom: 1ch;
+
+}
+
+input {
+  padding: 1ch; 
+  margin-bottom: 1ch;
+  border-radius: 0.75ch;
+  border: groove;
+  color: darkslategray;
+  background-color: lightgray;
+}
+
+
+
+textarea {
+  width: 100%;
+  background-color: lightgray;
+  border-radius: 0.75ch;
+}
+ .form-button {
+   border-radius: 0.75ch;
+   font-weight: bold;
+   padding: 1ch;
+   border: unset;
+   transition: all 0.5s;
+   cursor: pointer;
+ }
+
+ .form-button span {
+   cursor: pointer;
+   transition: 0.5s;
+   display: inline-block;
+   position: relative;
+ }
+
+ .form-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.form-button:hover span {
+  padding-right: 25px;
+}
+
+.form-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.source-code-form {
   text-align: center;
 }
+.source-code-btn{
+  display: inline-block;
+  background-color: transparent;
+  border: solid lightgrey;
+  color: grey;
+  font-size: 20px;
+}
+
+.source-code-btn:hover {
+  border: solid green;
+  color: green;
+}
+
+

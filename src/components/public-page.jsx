@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Generator from './fakeBioGenerator';
+import Generator from './fakeBioGenerator'
 
+//fix random bio fetcher and local storage
 
 class PublicPage extends Component {
     state = { 

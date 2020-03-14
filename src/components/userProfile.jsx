@@ -29,6 +29,7 @@ class UserProfile extends Component {
         <hr/>
         <p>{bio}</p>
         <button
+                className= "form-button"
                 onClick={(e)=> this.createNew(e)}
                 style={displayStuff ?{display: 'inline-block'}: {display:'none'}}
                 >

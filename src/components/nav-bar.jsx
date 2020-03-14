@@ -5,10 +5,7 @@ const NavBar = () => (
     <div className= "navBar">
         <ul>
             <li>
-                <Link to= "/public-page">Feed</Link>
-            </li>
-            <li>
-                <Link to= "/sign-in">Sign In</Link>
+                <Link to= "/public-page">Social Circle</Link>
             </li>
             <li>
                 <Link to= "/">Profile</Link>
