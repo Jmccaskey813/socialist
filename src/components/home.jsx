@@ -39,7 +39,7 @@ class Home extends Component {
                 style={displayStuff ?{display: 'none'}: {display:'inline'}}
                 >
                 <p>Create a profile</p>
-                <form onSubmit={this.props.onSubmit} className="profile">
+                <form onSubmit={usernameOne === usernameTwo ? this.props.onSubmit : null } className="profile">
                     <span>username</span>
                     <br/>
                     <input 
@@ -47,13 +47,15 @@ class Home extends Component {
                         onChange= {(e)=> this.props.onChange(e)}
                         name= "usernameOne"
                         value= {usernameOne}
+                        style = {usernameOne === usernameTwo ? {borderColor: "blue"}: {borderColor: "red"}} 
                     ></input>
                     <br/>
                     <input 
                         placeholder="confirm" 
                         onChange={(e)=> this.props.onChange(e)}
                         name= "usernameTwo" 
-                        value= {usernameTwo}   
+                        value= {usernameTwo}  
+                        style = {usernameOne === usernameTwo ? {borderColor: "blue"}: {borderColor: "red"}} 
                     ></input>
                     <br/>
                     <span>full name</span>
